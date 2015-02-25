@@ -3,11 +3,21 @@
     "capabilities": [
         ""
     ],
-    "companyName": "matejdro",
+    "companyName": "gazab",
     "longName": "Keep",
     "projectType": "native",
     "resources": {
         "media": [
+            {
+                "file": "images/list.png",
+                "name": "LIST_ICON",
+                "type": "png"
+            },
+            {
+                "file": "images/note.png",
+                "name": "NOTE_ICON",
+                "type": "png"
+            },
             {
                 "file": "images/icon.png",
                 "menuIcon": true,
@@ -17,7 +27,7 @@
         ]
     },
     "shortName": "Keep",
-    "uuid": "0d1db88b-d34d-434c-bcab-1b12bc88e36d",
+    "uuid": "fc508c40-bd2e-11e4-bb52-0800200c9a66",
     "versionCode": 1,
     "versionLabel": "1.0",
     "watchapp": {

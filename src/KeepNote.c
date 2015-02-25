@@ -46,7 +46,7 @@ void note_init()
 	Layer* topLayer = window_get_root_layer(fullWindow);
 
 	fullNoteText = text_layer_create(windowBounds);
-	text_layer_set_font(fullNoteText, fonts_get_system_font(FONT_KEY_GOTHIC_18));
+	text_layer_set_font(fullNoteText, fonts_get_system_font(FONT_KEY_GOTHIC_24));
 
 	scroller = scroll_layer_create(windowBounds);
 	scroll_layer_set_click_config_onto_window(scroller, fullWindow);

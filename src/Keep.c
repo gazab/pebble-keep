@@ -6,6 +6,9 @@ Window* listWindow;
 MenuLayer* menuLayer;
 TextLayer* loadingLayer;
 
+static GBitmap *noteBitmap;
+static GBitmap *listBitmap;
+
 char items[50][20];
 uint8_t numOfItems = 0;
 
@@ -116,15 +119,26 @@ uint16_t menu_get_num_rows_callback(MenuLayer *me, uint16_t section_index, void 
 
 
 int16_t menu_get_row_height_callback(MenuLayer *me,  MenuIndex *cell_index, void *data) {
-	return 27;
+	return 30;
 }
 
-
+int is_list_item(char *item) {
+  if(item[0] == 'L')
+    return 1;
+  else
+    return 0;
+}
 
 // This is the menu item draw callback where you specify what each item should look like
 void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
 	graphics_context_set_text_color(ctx, GColorBlack);
-	graphics_draw_text(ctx, items[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(3, 3, 141, 23), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+  if(is_list_item(items[cell_index->row])) {
+    graphics_draw_bitmap_in_rect(ctx, listBitmap, GRect(3, 7, 16, 16));
+  }
+  else {
+    graphics_draw_bitmap_in_rect(ctx, noteBitmap, GRect(3, 7, 16, 16));
+  }
+	graphics_draw_text(ctx, items[cell_index->row]+2, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD), GRect(24, 0, 124, 28), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
 }
 
 
@@ -172,6 +186,10 @@ int main() {
 	layer_add_child(topLayer, (Layer*) loadingLayer);
 
 	menuLayer = menu_layer_create(windowBounds);
+  
+  // Load images
+  noteBitmap =  gbitmap_create_with_resource(RESOURCE_ID_NOTE_ICON);
+  listBitmap =  gbitmap_create_with_resource(RESOURCE_ID_LIST_ICON);
 
 	// Set all the callbacks for the menu layer
 	menu_layer_set_callbacks(menuLayer, NULL, (MenuLayerCallbacks){
