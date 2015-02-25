@@ -9,6 +9,16 @@
     "resources": {
         "media": [
             {
+                "file": "images/unchecked.png",
+                "name": "UNCHECKED",
+                "type": "png"
+            },
+            {
+                "file": "images/checked.png",
+                "name": "CHECKED",
+                "type": "png"
+            },
+            {
                 "file": "images/list.png",
                 "name": "LIST_ICON",
                 "type": "png"
