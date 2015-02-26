@@ -138,7 +138,7 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
   else {
     graphics_draw_bitmap_in_rect(ctx, noteBitmap, GRect(3, 7, 16, 16));
   }
-	graphics_draw_text(ctx, items[cell_index->row]+2, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD), GRect(24, 0, 124, 28), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+	graphics_draw_text(ctx, items[cell_index->row]+2, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD), GRect(24, -2, 124, 30), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
 }
 
 
