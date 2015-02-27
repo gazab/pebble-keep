@@ -36,6 +36,7 @@
             }
         ]
     },
+    "sdkVersion": "2",
     "shortName": "Keep",
     "uuid": "fc508c40-bd2e-11e4-bb52-0800200c9a66",
     "versionCode": 1,

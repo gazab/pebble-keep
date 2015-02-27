@@ -1,6 +1,7 @@
 #include "pebble.h"
 #include "pebble_fonts.h"
 #include "KeepNote.h"
+#include "KeepList.h"
 
 Window* listWindow;
 MenuLayer* menuLayer;
@@ -16,6 +17,7 @@ bool loading = true;
 int8_t pickedItem = -1;
 
 bool displayingNote = false;
+bool displayingList = false;
 
 void sendSelection()
 {
@@ -89,6 +91,10 @@ void received_data(DictionaryIterator *received, void *context) {
 		note_data_received(received);
 		return;
 	}
+  else if(displayingList) {
+    listnote_part_received(received);
+    return;
+  }
 
 	uint8_t id = dict_find(received, 0)->value->uint8;
 
@@ -101,6 +107,11 @@ void received_data(DictionaryIterator *received, void *context) {
 		displayingNote = true;
 		note_init();
 		note_data_received(received);
+    break;
+  case 2:
+    displayingList = true;
+    list_init();
+    listnote_part_received(received);
 		break;
 	}
 }
@@ -157,6 +168,7 @@ void window_load(Window *me) {
 	loading = true;
 	pickedItem = -1;
 	displayingNote = false;
+  displayingList = false;
 
 	app_comm_set_sniff_interval(SNIFF_INTERVAL_REDUCED);
 

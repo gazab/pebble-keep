@@ -1,6 +1,6 @@
 #include "pebble.h"
 #include "pebble_fonts.h"
-
+  
 char fullNote[3000];
 TextLayer* fullNoteText;
 ScrollLayer* scroller;
