@@ -138,19 +138,19 @@ static void list_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuI
 	graphics_draw_text(ctx, listItems[cell_index->row]+2, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD), GRect(24, -2, 124, 30), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
 }
 
+void toggle_list_item(int index) {
+  if(is_checked(listItems[index])) {
+      strncpy(listItems[index],"-", 1);
+    }
+  else {
+    strncpy(listItems[index],"+", 1);
+  }
+}
+
 // Here we capture when a user selects a menu item
 void list_menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
-  // Use the row to specify which item will receive the select action
-  switch (cell_index->row) {
-    // This is the menu item with the cycling icon
-    case 1:
-      // Cycle the icon
-      current_icon = (current_icon + 1) % NUM_MENU_ICONS;
-      // After changing the icon, mark the layer to have it updated
-      layer_mark_dirty(menu_layer_get_layer(menu_layer));
-      break;
-  }
-
+    toggle_list_item(cell_index->row);
+    layer_mark_dirty(menu_layer_get_layer(menu_layer));
 }
 
 // This initializes the menu upon window load
